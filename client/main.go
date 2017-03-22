@@ -31,7 +31,7 @@ func main() {
 
 	goth.UseProviders(
 		aps.New("bawdy-reindeers-14-56dd2bcc2ba94", "6454acedc7024fdfa743c5407da7ad44", "http://localhost:3000/auth/aps/callback"),
-		gplus.New("72983246488-upvsod3t92stf9o9ojvqvqrip0t3anln.apps.googleusercontent.com", "M8D_euTcQ9WC2NJdTwVqwX5R", "http://localhost:3000/auth/gplus/callback"),
+		gplus.New("481644593075-vr9gl324r28j9n9vgtndm2vdsm4atn6v.apps.googleusercontent.com", "PVyfrVoenY0FL-Fvn93CktnD", "http://localhost:3000/auth/gplus/callback"),
 	)
 
 	api.Get("/", func(ctx *iris.Context) {

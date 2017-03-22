@@ -3,10 +3,9 @@ package aps
 import (
 	"encoding/json"
 	"errors"
+	"github.com/markbates/goth"
 	"strings"
 	"time"
-
-	"github.com/markbates/goth"
 )
 
 // Session stores data during the auth process with APS.
@@ -27,7 +26,20 @@ func (s Session) GetAuthURL() (string, error) {
 
 // Authorize - Please fill the code
 func (s *Session) Authorize(provider goth.Provider, params goth.Params) (string, error) {
-	return "", nil
+	p := provider.(*Provider)
+	token, err := p.config.Exchange(params.Get("code"))
+	if err != nil {
+		return "", err
+	}
+
+	if !token.Valid() {
+		return "", errors.New("Invalid token received from provider")
+	}
+
+	s.AccessToken = token.AccessToken
+	s.RefreshToken = token.RefreshToken
+	s.ExpiresAt = token.Expiry
+	return token.AccessToken, err
 }
 
 // Marshal the session into a string

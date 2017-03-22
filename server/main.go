@@ -146,7 +146,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusFound)
 		return
 	}
-	outputHTML(w, r, "static/login.html")
+	outputHTML(w, r, "server/static/login.html")
 }
 
 func authHandler(w http.ResponseWriter, r *http.Request) {
@@ -170,7 +170,7 @@ func authHandler(w http.ResponseWriter, r *http.Request) {
 		us.Delete("Form")
 		return
 	}
-	outputHTML(w, r, "static/auth.html")
+	outputHTML(w, r, "server/static/auth.html")
 }
 
 func outputHTML(w http.ResponseWriter, req *http.Request, filename string) {
